@@ -5,7 +5,7 @@ set -ex
 PRE_SEQ_LEN=128
 LR=2e-2
 NUM_GPUS=1
-MAX_SEQ_LEN=2048
+MAX_SEQ_LEN=1024
 DEV_BATCH_SIZE=1
 GRAD_ACCUMULARION_STEPS=16
 MAX_STEP=1000
@@ -33,5 +33,6 @@ torchrun --standalone --nnodes=1 --nproc_per_node=$NUM_GPUS finetune.py \
     --logging_steps 1 \
     --save_steps $SAVE_INTERVAL \
     --learning_rate $LR \
+    --quantization_bit 4
     # --use_mps_device 1 \
     --pre_seq_len $PRE_SEQ_LEN 2>&1 | tee ${OUTPUT_DIR}/train.log
