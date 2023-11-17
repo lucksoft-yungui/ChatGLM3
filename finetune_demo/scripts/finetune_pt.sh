@@ -6,11 +6,11 @@ PRE_SEQ_LEN=128
 LR=2e-2
 NUM_GPUS=1
 MAX_SOURCE_LEN=1024
-MAX_TARGET_LEN=1024
+MAX_TARGET_LEN=128
 DEV_BATCH_SIZE=1
 GRAD_ACCUMULARION_STEPS=32
-MAX_STEP=100
-SAVE_INTERVAL=10
+MAX_STEP=50
+SAVE_INTERVAL=5
 
 DATESTR=`date +%Y%m%d-%H%M%S`
 RUN_NAME=advertise_gen_pt
@@ -35,6 +35,5 @@ torchrun --standalone --nnodes=1 --nproc_per_node=$NUM_GPUS finetune.py \
     --logging_steps 1 \
     --save_steps $SAVE_INTERVAL \
     --learning_rate $LR \
-    # --use_mps_device 1 \
-    --quantization_bit 4 \
+    --use_mps_device 1 \
     --pre_seq_len $PRE_SEQ_LEN 2>&1 | tee ${OUTPUT_DIR}/train.log

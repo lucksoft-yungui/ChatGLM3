@@ -32,4 +32,5 @@ torchrun --standalone --nnodes=1 --nproc_per_node=$NUM_GPUS finetune.py \
     --logging_steps 1 \
     --save_steps $SAVE_INTERVAL \
     --fp16 \
+     --use_mps_device 1 \
     --deepspeed configs/deepspeed.json 2>&1 | tee ${OUTPUT_DIR}/train.log

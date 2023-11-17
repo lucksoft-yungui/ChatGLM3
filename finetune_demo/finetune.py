@@ -113,6 +113,7 @@ def main():
         if data_args.train_file.endswith(".json"):
             train_data = json.load(f)
         elif data_args.train_file.endswith(".jsonl"):
+            print(data_args.train_file)
             train_data = [json.loads(line) for line in f]
 
     if data_args.train_format == "multi-turn":
