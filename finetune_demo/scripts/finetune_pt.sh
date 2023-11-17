@@ -36,4 +36,5 @@ torchrun --standalone --nnodes=1 --nproc_per_node=$NUM_GPUS finetune.py \
     --save_steps $SAVE_INTERVAL \
     --learning_rate $LR \
     # --use_mps_device 1 \
+    --quantization_bit 8 \
     --pre_seq_len $PRE_SEQ_LEN 2>&1 | tee ${OUTPUT_DIR}/train.log
